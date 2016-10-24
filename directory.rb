@@ -6,6 +6,8 @@ def space
   puts ""
 end
 
+student_count = 11
+
 #first we print the list of students
 space
 puts "The students of Villains Academy"
@@ -24,9 +26,6 @@ puts "Joffrey Baratheon"
 puts "Norman Bates"
 space
 #Finally we print the total numbe rof studbets
-print "Overall, we have "
-#its important that print() doesnt add new line characters
-print 11
-puts " great students"
+puts "Overall, we have #{student_count} great students"
 line
 space
