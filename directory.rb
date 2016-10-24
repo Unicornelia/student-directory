@@ -6,6 +6,7 @@ def space
   puts ""
 end
 
+
 space
 puts "The students of Villains Academy"
 line
@@ -21,5 +22,9 @@ puts "Freddy Krueger"
 puts "The Joker"
 puts "Joffrey Baratheon"
 puts "Norman Bates"
+space
+print "Overall, we have "
+print 11
+puts " great students"
 line
 space
