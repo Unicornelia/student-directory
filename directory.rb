@@ -1,13 +1,4 @@
-def line
-  puts "-" * 35
-end
-
-def space
-  puts ""
-end
-
-#first we print the list of students
-space
+#first we put all students in an array
 students = [
   "Dr. Hannibal Lecter",
   "Darth Vader",
@@ -21,18 +12,32 @@ students = [
   "Joffrey Baratheon",
   "Norman Bates"
 ]
-#and then print them
-puts "The students of Villains Academy"
-line
-space
 
-students.each do |student|
-  puts student
+def print_header
+  puts "The students of Villains Academy"
+  puts "-" * 35
 end
 
-line
+def printing(names)
+  names.each do |name|
+    puts name
+  end
+end
+
+def print_footer(names)
+  puts "Overall, we have #{names.count} great students"
+end
+
+def space
+  puts ""
+end
+
+#and then print them
+#nothing happens till we call them methods though
+
+print_header
 space
-#Finally we print the total number of students
-puts "Overall, we have #{students.count} great students"
-line
+printing(students)
+space
+print_footer(students)
 space
