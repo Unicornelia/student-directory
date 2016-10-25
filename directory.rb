@@ -47,14 +47,11 @@ end
 
 
 def name_length(students)
-  puts "How long should a student's name be? (characters)"
-  name_length = gets.chomp
+  puts "I will print now all those students who's name is shorter than 12 letters:"
+  name_length = 12
   students.each_with_index do |student, index|
-    if(student[:name].length < 12)
-      puts "Name of students who's name is shorter than 12 letters"
+    if(student[:name].length < name_length)
       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    else
-      puts "That's all folks, no more short names like this"
     end
   end
 end
@@ -81,6 +78,6 @@ printing(students)
 space
 print_footer(students)
 space
-starts_with_letter(students)
+#starts_with_letter(students)
 space
-#name_length(student)
+name_length(students)
