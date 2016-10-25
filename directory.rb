@@ -1,44 +1,46 @@
 def input_students
   puts "Please enter the name of the students: \n"
+  puts "To finish just hit return twice"
   students = []
   name = gets.chomp
-  puts "How about the hobby of this person? (Type one) \n"
-  hobby = gets.chomp
-  puts "And would you mind telling me where this person was born? (city) \n"
-  born = gets.chomp
-  puts "Just a few more things, anthropometric data, height? (cm) \n"
-  height = gets.chomp
-  puts "Mind letting me know how much you weigh in kgs? \n"
-  weight = gets.chomp
+  # puts "How about the hobby of this person? (Type one) \n"
+  # hobby = gets.chomp
+  # puts "And would you mind telling me where this person was born? (city) \n"
+  # born = gets.chomp
+  # puts "Just a few more things, anthropometric data, height? (cm) \n"
+  # height = gets.chomp
+  # puts "Mind letting me know how much you weigh in kgs? \n"
+  # weight = gets.chomp
   while !name.empty? do
     #add the student hash to the array
-    students << {name: name, cohort: :november, hobby: hobby, born: born, height: height, weight: weight}
+    students << {name: name, cohort: :november}
     puts "Now we have #{students.count} students"
-    puts "Please enter the next student's name: \n"
+    # puts "Please enter the next student's name: \n"
+    # name = gets.chomp
+    # puts "How about the hobby of this person? (Type one) \n"
+    # hobby = gets.chomp
+    # puts "And would you mind telling me where this person was born? (city) \n"
+    # born = gets.chomp
+    # puts "Just a few more things, anthropometric data, height? (cm) \n"
+    # height = gets.chomp
+    # puts "Mind letting me know how much you weigh in kgs? \n"
+    # weight = gets.chomp
     name = gets.chomp
-    puts "How about the hobby of this person? (Type one) \n"
-    hobby = gets.chomp
-    puts "And would you mind telling me where this person was born? (city) \n"
-    born = gets.chomp
-    puts "Just a few more things, anthropometric data, height? (cm) \n"
-    height = gets.chomp
-    puts "Mind letting me know how much you weigh in kgs? \n"
-    weight = gets.chomp
   end
   students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-" * 35
+  puts "The students of Villains Academy".center(50)
+  puts "-------------------------".center(50)
 end
 
 def printing(students)
-  students.each_with_index do |student, index, hobby, born, height, weight|
-    puts "#{index + 1}. #{student[:name].capitalize} (#{student[:cohort].capitalize} cohort)"
-    puts "Some more details: #{student[:hobby]} as a hobby"
-    puts "This student was born in #{student[:born].capitalize}"
-    puts "The student is #{student[:height]} cm tall and #{student[:weight]} kgs light."
+  students.each_with_index do |student, index|
+    puts "#{index + 1}. #{student[:name].capitalize} (#{student[:cohort].capitalize} cohort)".center(20)
+    # puts "Some more details: #{student[:hobby]} as a hobby"
+    # puts "This student was born in #{student[:born].capitalize}"
+    # puts "The student is #{student[:height]} cm tall and #{student[:weight]} kgs light."
   end
 end
 
@@ -85,7 +87,7 @@ end
 
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students".center(50)
 end
 
 def space
@@ -105,5 +107,4 @@ space
 print_footer(students)
 space
 #starts_with_letter(students)
-space
 #name_length(students)
