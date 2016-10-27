@@ -2,9 +2,9 @@ def input_students
   puts "Please enter the name of the students: \n"
   puts "To finish just hit return twice"
   students = []
-  name = gets.chomp
+  name = gets.strip
   puts "What cohort does this student belong to?"
-  cohort = gets.chomp
+  cohort = gets.strip
   #checks the condition whether the month is filled in or typed correctly
   if cohort.empty?
     cohort = "not know which"
