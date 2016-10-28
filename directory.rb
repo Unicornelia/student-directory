@@ -41,8 +41,12 @@ def print_header
 end
 
 def printing(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name].capitalize} (#{student[:cohort].capitalize} cohort)".center(20)
+  if students.length > 0
+    students.each_with_index do |student, index|
+      puts "#{index + 1}. #{student[:name].capitalize} (#{student[:cohort].capitalize} cohort)".center(20)
+    end
+  else
+    puts "No students no list!"
   end
 end
 
@@ -55,8 +59,11 @@ def sort_by_cohort(students)
 end
 
 def print_footer(names)
-  if names.count <= 1
+  if names.count == 1
     puts "Overall, we have #{names.count} great student".center(50)
+  elsif names.count == 0
+    puts "No students present, as I said, no list for you!"
+    puts "Next time try to actually add something to the list. :) "
   else
     puts "Overall, we have #{names.count} great students".center(50)
   end
@@ -75,4 +82,4 @@ printing(students)
 space
 print_footer(students)
 space
-sort_by_cohort(students)
+#sort_by_cohort(students)
