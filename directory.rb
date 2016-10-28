@@ -74,12 +74,35 @@ def space
 end
 
 
-space
-students = input_students
-print_header
-space
-printing(students)
-space
-print_footer(students)
-space
-#sort_by_cohort(students)
+def interactive_menu
+  students = []
+  puts "Hello there, please choose what you wish to do: "
+  loop do
+    #1. orint the menu and asj the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit" #there will be more items
+    #2. read the unput and save it into a variable
+    selection =  gets.chomp
+    #3. do what the user has asked
+    case selection
+    when "1"
+      space
+      students = input_students
+      space
+    when "2"
+      space
+      print_header
+      printing(students)
+      print_footer(students)
+      space
+    when "9"
+      puts "Goodbye!"
+      exit #this will terminate our program
+    else
+      puts "I don't know what you meant, try again!"
+    end
+  end
+end
+
+interactive_menu
