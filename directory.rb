@@ -136,10 +136,11 @@ def try_load_students
     load_students(filename)
       puts "Loaded #{@students.count} from #{filename}"
     else #if it does not exists
+      load_students(filename = "students.csv")
       puts "Sorry, #{filename} doesn't exist."
       exit #quit the program
     end
 end
 
-try_load_students
+load_students #just load with this
 interactive_menu
