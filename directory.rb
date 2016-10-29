@@ -142,5 +142,5 @@ def try_load_students
     end
 end
 
-load_students #just load with this
+load_students #just load with this on start
 interactive_menu
