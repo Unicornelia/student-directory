@@ -8,9 +8,9 @@ def input_students
   puts "Please enter the name of the students: \n"
   puts "To finish just hit return twice"
   space
-  name = STDIN.gets.strip
+  name = STDIN.gets.chomp
   puts "What cohort does this student belong to?"
-  cohort = STDIN.gets.strip
+  cohort = STDIN.gets.chomp
   #checks the condition whether the month is filled in or typed correctly
   if cohort.empty?
     cohort = "not know which"
@@ -54,14 +54,6 @@ def print_students_list
     end
   else
     puts "No students no list!"
-  end
-end
-
-def sort_by_cohort
-  @students.sort_by do |student|
-    student[:cohort]
-    puts "The following students belong to the #{student[:cohort]} cohort: \n"
-    puts "#{student[:name]}."
   end
 end
 
@@ -137,8 +129,8 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     @students << {name: name, cohort: cohort.to_sym}
@@ -151,7 +143,7 @@ def try_load_students
   return if filename.nil? #get out of the method if it isnt given
   if File.exists?(filename) #if it exists
     load_students(filename)
-      puts "Loaded #{students.count} from #{filename}"
+      puts "Loaded #{@students.count} from #{filename}"
     else #if it does not exists
       puts "Sorry, #{filename} doesn't exist."
       exit #quit the program
