@@ -3,40 +3,29 @@ def space
 end
 
 @students = []
+@name = nil
+@cohort = nil
+
+def add_students
+  @students << {name: @name, cohort: @cohort.to_sym}
+end
 
 def input_students
   puts "Please enter the name of the students: \n"
   puts "To finish just hit return twice"
   space
-  name = STDIN.gets.chomp
+  @name = STDIN.gets.chomp
   puts "What cohort does this student belong to?"
-  cohort = STDIN.gets.chomp
+  @cohort = STDIN.gets.chomp
   #checks the condition whether the month is filled in or typed correctly
-  if cohort.empty?
-    cohort = "not know which"
-  elsif cohort == "January" || cohort == "February" || cohort == "March" || cohort == "April" || cohort == "May" || cohort == "June" || cohort == "July" || cohort == "August" || cohort == "September" || cohort == "October" || cohort == "November" || cohort == "December"
-    cohort = cohort
-  else
-    puts "You made a typo in the name of the cohort, make sure you type it with a capital letter."
-    cohort = STDIN.gets.chomp
-  end
-
-  while !name.empty? && !cohort.empty? do
+  while !@name.empty? && !@cohort.empty? do
     #add the student hash to the array
-    @students << {name: name, cohort: cohort.to_sym}
+    add_students
     puts "Now we have #{@students.count} students"
     puts "Please enter the name of the next student: "
-    name = STDIN.gets.chomp
+    @name = STDIN.gets.chomp
     puts "What cohort do they belong to? "
-    cohort = STDIN.gets.chomp
-    if cohort.empty?
-      cohort = "not know which"
-    elsif cohort == "January" || cohort == "February" || cohort == "March" || cohort == "April" || cohort == "May" || cohort == "June" || cohort == "July" || cohort == "August" || cohort == "September" || cohort == "October" || cohort == "November" || cohort == "December"
-      cohort = cohort
-    else
-      puts "You made a typo in the name of the cohort, make sure you type it with a capital letter."
-      cohort = STDIN.gets.chomp
-    end
+    @cohort = STDIN.gets.chomp
   end
   @students
 end
@@ -132,8 +121,8 @@ end
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
-    @students << {name: name, cohort: cohort.to_sym}
+    @name, @cohort = line.chomp.split(",")
+    add_students
   end
   file.close
 end
