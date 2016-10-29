@@ -10,6 +10,7 @@ def menu
   puts "3. its basename?"
   puts "4. its extended path?"
   puts "5. I don't care about this file, show me a cat instead!"
+  puts "6. Exit this"
   number = STDIN.gets.chomp
   case(number)
   when "1"
@@ -33,6 +34,9 @@ def menu
     puts " /\\_/\\"
     puts "( o.o )"
     puts " > ^ <"
+  when "6"
+    puts "Goodbye!"
+    exit
   else
     space_and_lines
     puts "No such option, Goodbye!"
@@ -40,25 +44,25 @@ def menu
   end
 end
 
-  def current_file_name
-    puts "The current file's full name is: "
-    puts  __FILE__
-  end
+def current_file_name
+  puts "The current file's full name is: "
+  puts  __FILE__
+end
 
-  def file_path
-    puts "The file can be found here: "
-    puts File.dirname(__FILE__)
-  end
+def file_path
+  puts "The file can be found here: "
+  puts File.dirname(__FILE__)
+end
 
-  def file_base_name
-    puts "The file's basename is: "
-    puts File.basename(__FILE__)
-  end
+def file_base_name
+  puts "The file's basename is: "
+  puts File.basename(__FILE__)
+end
 
-  def extended_path
-    puts "The file's extended path is: "
-    puts File.expand_path(__FILE__)
-  end
+def extended_path
+  puts "The file's extended path is: "
+  puts File.expand_path(__FILE__)
+end
 
 def space_and_lines
   puts "-" * 10
@@ -66,5 +70,10 @@ def space_and_lines
   puts "-" * 10
 end
 
+def file_menu
+  loop do
+    menu
+  end
+end
 
-menu
+file_menu
