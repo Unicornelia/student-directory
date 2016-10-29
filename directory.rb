@@ -61,6 +61,12 @@ def print_footer
   end
 end
 
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+
 def print_menu
   puts "Please choose what you wish to do: "
   space
@@ -71,11 +77,7 @@ def print_menu
   puts "9. Exit" #there will be more items
 end
 
-def show_students
-  print_header
-  print_students_list
-  print_footer
-end
+
 
 def process(selection)
   case selection
