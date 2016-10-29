@@ -1,3 +1,5 @@
+require "csv"
+
 def space
   puts ""
 end
@@ -132,20 +134,19 @@ end
 def save_students
   #open the file for writing
   save_file
-  File.open(@filename, "w") do |file|
+  CSV.open(@filename, "w") do |csv|
     @students.each do |student|
       student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      csv << student_data
     end
   end
 end
 
 def load_students
   load_file
-  File.open(@filename, "r") do |file|
-    file.readlines.each do |line|
-      @name, @cohort = line.chomp.split(",")
+  CSV.open(@filename, "r") do |csv|
+    csv.readlines.each do |line|
+      @name, @cohort = line
       add_students
     end
   end
