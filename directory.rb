@@ -8,9 +8,9 @@ def input_students
   puts "Please enter the name of the students: \n"
   puts "To finish just hit return twice"
   space
-  name = gets.strip
+  name = STDIN.gets.strip
   puts "What cohort does this student belong to?"
-  cohort = gets.strip
+  cohort = STDIN.gets.strip
   #checks the condition whether the month is filled in or typed correctly
   if cohort.empty?
     cohort = "not know which"
@@ -18,7 +18,7 @@ def input_students
     cohort = cohort
   else
     puts "You made a typo in the name of the cohort, make sure you type it with a capital letter."
-    cohort = gets.chomp
+    cohort = STDIN.gets.chomp
   end
 
   while !name.empty? && !cohort.empty? do
@@ -26,16 +26,16 @@ def input_students
     @students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{@students.count} students"
     puts "Please enter the name of the next student: "
-    name = gets.chomp
+    name = STDIN.gets.chomp
     puts "What cohort do they belong to? "
-    cohort = gets.chomp
+    cohort = STDIN.gets.chomp
     if cohort.empty?
       cohort = "not know which"
     elsif cohort == "January" || cohort == "February" || cohort == "March" || cohort == "April" || cohort == "May" || cohort == "June" || cohort == "July" || cohort == "August" || cohort == "September" || cohort == "October" || cohort == "November" || cohort == "December"
       cohort = cohort
     else
       puts "You made a typo in the name of the cohort, make sure you type it with a capital letter."
-      cohort = gets.chomp
+      cohort = STDIN.gets.chomp
     end
   end
   @students
@@ -121,7 +121,7 @@ end
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -146,5 +146,17 @@ def load_students
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first #first argument from the command line
+  return if filename.nil? #get out of the method if it isnt given
+  if File.exists?(filename) #if it exists
+    load_students(filename)
+      puts "Loaded #{students.count} from #{filename}"
+    else #if it does not exists
+      puts "Sorry, #{filename} doesn't exist."
+      exit #quit the program
+    end
+end
 
+try_load_students
 interactive_menu
