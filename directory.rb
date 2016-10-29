@@ -90,8 +90,10 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "Entering students' data.."
     input_students
   when "2"
+    puts "Showing students..."
     show_students
   when "3"
     puts "Saving students..."
