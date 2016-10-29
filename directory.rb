@@ -5,6 +5,8 @@ end
 @students = []
 @name = nil
 @cohort = nil
+@filename = "students.csv"
+
 
 def add_students
   @students << {name: @name, cohort: @cohort.to_sym}
@@ -80,11 +82,20 @@ def print_menu
   space
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to student.csv"
-  puts "4. Load the list from student.csv"
+  puts "3. Save the list to file"
+  puts "4. Load the list from file"
   puts "9. Exit" #there will be more items
 end
 
+def load_file
+  puts "What file would you like to load? (filename.extention)"
+  @filename = STDIN.gets.chomp.downcase
+end
+
+def save_file
+  puts "Where would you like to save your list? (filename.extention)"
+  @filename = STDIN.gets.chomp.downcase
+end
 
 
 def process(selection)
@@ -120,7 +131,8 @@ end
 
 def save_students
   #open the file for writing
-  file = File.open("students.csv", "w")
+  save_file
+  file = File.open(@filename, "w")
   #iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -130,8 +142,9 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+def load_students
+  load_file
+  file = File.open(@filename, "r")
   file.readlines.each do |line|
     @name, @cohort = line.chomp.split(",")
     add_students
@@ -144,13 +157,13 @@ def try_load_students
   return if filename.nil? #get out of the method if it isnt given
   if File.exists?(filename) #if it exists
     load_students(filename)
-      puts "Loaded #{@students.count} from #{filename}"
-    else #if it does not exists
-      load_students(filename = "students.csv")
-      puts "Sorry, #{filename} doesn't exist."
-      exit #quit the program
-    end
+    puts "Loaded #{@students.count} from #{filename}"
+  else #if it does not exists
+    load_students(filename = "students.csv")
+    puts "Sorry, #{filename} doesn't exist."
+    exit #quit the program
+  end
 end
 
-load_students #just load with this on start
+#load_students #just load with this on start
 interactive_menu
