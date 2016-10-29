@@ -14,18 +14,18 @@ def input_students
   puts "Please enter the name of the students: \n"
   puts "To finish just hit return twice"
   space
-  @name = STDIN.gets.chomp
+  get_name
   puts "What cohort does this student belong to?"
-  @cohort = STDIN.gets.chomp
+  get_cohort
   #checks the condition whether the month is filled in or typed correctly
   while !@name.empty? && !@cohort.empty? do
     #add the student hash to the array
     add_students
     puts "Now we have #{@students.count} students"
     puts "Please enter the name of the next student: "
-    @name = STDIN.gets.chomp
+    get_name
     puts "What cohort do they belong to? "
-    @cohort = STDIN.gets.chomp
+    get_cohort
   end
   @students
 end
@@ -34,6 +34,14 @@ def print_header
   puts "The students of Villains Academy".center(50)
   puts "-------------------------".center(50)
   space
+end
+
+def get_name
+  @name = STDIN.gets.chomp
+end
+
+def get_cohort
+  @cohort = STDIN.gets.chomp
 end
 
 def print_students_list
